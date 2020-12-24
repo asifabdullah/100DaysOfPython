@@ -32,6 +32,28 @@ phonetic_data = pandas.read_csv("nato_phonetic_alphabet.csv")
 phonetic_data_dictionary = {row.letter: row.code for (index, row) in phonetic_data.iterrows()}
 # print(phonetic_data_dictionary)
 
-name = input("Enter a word: ")
-result = [phonetic_data_dictionary[letter.upper()] for letter in name]
-print(result)
+# is_continue = True
+#
+# while is_continue:
+#     name = input("Enter a word: ")
+#     try:
+#         result = [phonetic_data_dictionary[letter.upper()] for letter in name]
+#     except KeyError:
+#         print("Sorry, only letters in the alphabet please")
+#     else:
+#         print(result)
+#         is_continue = False
+
+
+def generate_password():
+    name = input("Enter a word: ")
+    try:
+        result = [phonetic_data_dictionary[letter.upper()] for letter in name]
+    except KeyError:
+        print("Sorry, only letters in the alphabet please")
+        generate_password()
+    else:
+        print(result)
+
+
+generate_password()
